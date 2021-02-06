@@ -2,9 +2,9 @@
   "name": "mlm_project",
   "version": "1.0.0",
   "description": "backend for mlm",
-  "main": "index.js",
+  "main": "index.server.js",
   "scripts": {
-    "start": "nodemon index.server.js"
+    "start": "nodemon ./src/index.server.js"
   },
   "keywords": [
     "mlm",
