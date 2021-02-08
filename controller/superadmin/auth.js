@@ -1,17 +1,26 @@
-const __superadmin = require("../models/superadmin")
+const __superadmin = require("../../models/superadmin")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { createJWT } = require("../utils/createjwt");
+const { createJWT } = require("../../utils/createjwt");
+const mongoose = require('mongoose')
 
 const signup = (req, res, next) => {
-  let { name, email, password, roll,  joiningDate, balance, id} = req.body;
-  __superadmin.findOne({ email: email })
+  let { name, email, password, joiningDate, balance, id } = req.body;
+  superadmin.findOne({ email: email })
     .then((superadmin) => {
       if (superadmin) {
         return res
           .status(422)
-          .json({ errors: [{ superadmin: "email already exists" }] });
-      } else {
+          .json({ errors: [{ "msg": "email already exists" }] });
+      }
+      else if (superadmin.count(function (err, count) {
+
+        if (err) { res.status(403).json({ "msg": "bad request" }) }
+
+        else if (count >= 4) { return res.status(404).json({ "msg": "Max superadmin registered" }) }
+
+      }));
+      else {
         const saltRounds = 10;
         bcrypt
           .hash(password, saltRounds)
@@ -20,8 +29,8 @@ const signup = (req, res, next) => {
               name,
               email,
               password: passwordHash,
-              roll,
               joiningDate,
+              role: "superadmin",
               balance,
               id
             });
@@ -42,7 +51,7 @@ const signup = (req, res, next) => {
     });
 };
 
-const signin = (req, res,next) => {
+const signin = (req, res, next) => {
   let { email, password } = req.body;
   __superadmin.findOne({ email })
     .then((superadmin) => {

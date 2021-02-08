@@ -1,5 +1,5 @@
 
-const user = require("../models/user");
+const user = require('../../models/user');
 exports.deleteUser = function (req, res) {
   user.findByIdAndRemove(
     req.params.id,

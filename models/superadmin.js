@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let superadminSchema = new Schema(
   {
-    
-      name:{
+
+    name: {
       type: String,
       required: true,
     },
 
-      email: {
+    email: {
       type: String,
       required: true,
       unique: true,
@@ -20,24 +20,23 @@ let superadminSchema = new Schema(
       required: true,
       minLength: 6,
     },
-    roll: {
-      type: String,
-       required: true,
-    },
     joiningDate: {
       type: String,
       required: true,
     },
-
+    role: {
+      type: String,
+      required:true,
+    },
     balance: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
 
-      id: {
-        type: String,
-        required: true,
-      },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -45,4 +44,4 @@ let superadminSchema = new Schema(
     status: true,
   }
 );
-module.exports = mongoose.model("Superadmin", superadminSchema);
+module.exports = mongoose.model("superadmin", superadminSchema);

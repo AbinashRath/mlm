@@ -20,9 +20,11 @@ let userSchema = new Schema(
       required: true,
       minLength: 6,
     },
-    roll: {
-      type: String,
-       required: true,
+    role:{
+      type:String,
+      enum:["wholeseller","vendor"],
+      default:"wholeseller",
+      required:true,
     },
     joiningDate: {
       type: Date,

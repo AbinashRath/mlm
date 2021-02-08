@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let teacherSchema = new Schema(
+let productSchema= new Schema(
   {
     
       name:{

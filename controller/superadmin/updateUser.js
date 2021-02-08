@@ -1,4 +1,4 @@
-const user = require("../models/user");
+const user = require('../../models/user');
 exports.updateUser = function (req, res) {
   user.findByIdAndUpdate(
     req.params.id,

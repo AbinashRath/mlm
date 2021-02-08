@@ -1,4 +1,4 @@
-//importing all the modules.
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 require("dotenv").config();
 
 //import routes
-const authRoutes = require('../routes/routes');
+const authRoutes = require('../routes/superadmin/superadminroutes');
 
 //start app
 const app = express();
@@ -21,10 +21,7 @@ mongoose
 
 //middlewares
 app.use (bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//     extended: true
-//     }));
-// app.use (cors());
+app.use (cors());
 
 //routes middleware
 app.use('/api', authRoutes);

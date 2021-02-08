@@ -5,7 +5,7 @@ exports.requireSignin = (req, res, next) => {
   if (!token) return res.status(401).json({ message: "Auth Error" });
 
   try {
-    const decoded = jwt.verify(token, `${process.env.SECRET_TOKEN}`);
+    const decoded = jwt.verify(token, `${process.env.TOKEN_SECRET}`);
     req.superadmin = decoded.superadmin;
     next();
   } catch (e) {
